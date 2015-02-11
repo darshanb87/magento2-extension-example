@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+        <link src="jquery/fileUploader/bootstrap.js"/>
+    </head>
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magentostudy\News\Block\Adminhtml\News\Edit" name="news_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Magentostudy\News\Block\Adminhtml\News\Edit\Tabs" name="news_edit_tabs">
+                <block class="Magentostudy\News\Block\Adminhtml\News\Edit\Tab\Main" name="news_edit_tab_main"/>
+                <block class="Magentostudy\News\Block\Adminhtml\News\Edit\Tab\Content" name="news_edit_tab_content"/>
+                <block class="Magentostudy\News\Block\Adminhtml\News\Edit\Tab\Image" name="news_edit_tab_image"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">news_edit_tab_main</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">content_section</argument>
+                    <argument name="block" xsi:type="string">news_edit_tab_content</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">image_section</argument>
+                    <argument name="block" xsi:type="string">news_edit_tab_image</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
