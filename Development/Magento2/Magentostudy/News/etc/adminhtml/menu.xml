@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Magentostudy_News::news" title="News" module="Magentostudy_News" sortOrder="30" resource="Magentostudy_News::news"/>
+        <add id="Magentostudy_News::news_manage" title="All News" module="Magentostudy_News" sortOrder="10" parent="Magentostudy_News::news" action="news/index/" resource="Magentostudy_News::manage"/>
+    </menu>
+</config>

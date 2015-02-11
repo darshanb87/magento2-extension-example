@@ -1,0 +1,31 @@
+<?php
+/**
+ * News template for separate item
+ *
+ * @author Magento
+ */
+
+/**
+ * @var $this Magentostudy\News\Block\View
+ * @see Magentostudy\News\Block\View
+ */
+?>
+<?php $_newsItem = $this->getNews(); ?>
+    <div class="news_item_subtitle">
+        <?php echo $this->formatDate($_newsItem->getPublishedAt(), 'medium') ?> |
+        <?php echo $this->escapeHtml($_newsItem->getAuthor()) ?>
+    </div>
+
+<div class="news_item_view">
+    <?php if ($imageUrl = $this->getImageUrl($_newsItem, 400)): ?>
+       <p><img src="<?php echo $imageUrl ?>" alt="<?php echo $this->escapeHtml($_newsItem->getTitle()) ?>" /></p>
+    <?php endif; ?>
+
+    <div class="news_item_content"><?php echo $_newsItem->getContent() ?></div>
+
+    <div class="pager">
+        <a href="<?php echo $this->getBackUrl() ?>">
+            <?php echo __('Return to list') ?>
+        </a>
+    </div>
+</div>

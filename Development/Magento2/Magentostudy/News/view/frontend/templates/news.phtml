@@ -1,0 +1,30 @@
+<?php
+/**
+ * @copyright Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+ */
+?>
+<?php $_news = $this->getCollection(); ?>
+<?php if ($_news->getSize()): ?>
+<div class="news_list_view">
+    <?php foreach ($_news as $newsItem): ?>
+        <div id="item_<?php echo $newsItem->getId() ?>" class="news_list_item">
+            <h2>
+                <a href="<?php echo $this->getItemUrl($newsItem) ?>">
+                    <?php echo $this->escapeHtml($newsItem->getTitle()) ?>
+                </a>
+            </h2>
+
+            <div class="news_item_subtitle">
+                <?php echo $this->formatDate($newsItem->getPublishedAt(), 'medium') ?> |
+                <?php echo $this->escapeHtml($newsItem->getAuthor()) ?>
+            </div>
+
+            <?php if ($imageUrl = $this->getImageUrl($newsItem, 100)): ?>
+               <p><img src="<?php echo $imageUrl ?>" alt="<?php echo $this->escapeHtml($newsItem->getTitle()); ?>" /></p>
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+</div>
+<?php else: ?>
+    <div class="message info empty"><span><?php echo __('You have no News.'); ?></span></div>
+<?php endif ?>
