@@ -12,6 +12,14 @@
                 <items_per_page>20</items_per_page>
                 <days_difference>3</days_difference>
             </view>
+            <email>
+                <send_email_to_customer>1</send_email_to_customer>
+                <recipient_email>
+                    <![CDATA[hello@example.com]]>
+                </recipient_email>
+                <sender_email_identity>custom2</sender_email_identity>
+                <email_template>news_email_email_template</email_template>
+            </email>
         </news>
     </default>
 </config>

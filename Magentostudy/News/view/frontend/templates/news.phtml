@@ -25,6 +25,7 @@
         </div>
     <?php endforeach; ?>
 </div>
+<?php echo $this->getPager() ?>
 <?php else: ?>
     <div class="message info empty"><span><?php echo __('You have no News.'); ?></span></div>
 <?php endif ?>

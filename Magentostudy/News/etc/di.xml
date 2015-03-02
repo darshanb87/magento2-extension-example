@@ -5,6 +5,8 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="Magento\Directory\Model\Country" type="Magentostudy\News\Model\Country" />
+    <preference for="Magento\Customer\Model\Data\Customer" type="Magentostudy\News\Model\Customer" />
     <type name="Magento\Framework\Module\Updater\SetupFactory">
         <arguments>
             <argument name="resourceTypes" xsi:type="array">

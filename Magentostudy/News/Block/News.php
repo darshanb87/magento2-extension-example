@@ -65,7 +65,9 @@ class News extends \Magento\Framework\View\Element\Template
     {
         if (is_null($this->_newsCollection)) {
             $this->_newsCollection = $this->_getCollection();
-            //$this->_newsCollection->prepareForList($this->getCurrentPage());
+            $this->_newsCollection->setCurPage($this->getCurrentPage());
+            $this->_newsCollection->setPageSize($this->_dataHelper->getNewsPerPage());
+            $this->_newsCollection->setOrder('published_at','asc');
         }
 
         return $this->_newsCollection;
@@ -102,5 +104,38 @@ class News extends \Magento\Framework\View\Element\Template
     public function getImageUrl($item, $width)
     {
         return $this->_dataHelper->resize($item, $width);
+    }
+    
+    /**
+     * Get a pager
+     *
+     * @return string|null
+     */
+    public function getPager()
+    {
+        $pager = $this->getChildBlock('news_list_pager');
+        if ($pager instanceof \Magento\Framework\Object) {
+            $newsPerPage = $this->_dataHelper->getNewsPerPage();
+
+            $pager->setAvailableLimit([$newsPerPage => $newsPerPage]);
+            $pager->setTotalNum($this->getCollection()->getSize());
+            $pager->setCollection($this->getCollection());
+            $pager->setShowPerPage(TRUE);
+            $pager->setFrameLength(
+                $this->_scopeConfig->getValue(
+                    'design/pagination/pagination_frame',
+                    \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+                )
+            )->setJump(
+                $this->_scopeConfig->getValue(
+                    'design/pagination/pagination_frame_skip',
+                    \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+                )
+            );
+
+            return $pager->toHtml();
+        }
+
+        return NULL;
     }
 }

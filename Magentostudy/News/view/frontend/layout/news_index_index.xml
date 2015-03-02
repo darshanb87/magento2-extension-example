@@ -7,7 +7,9 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <block class="Magentostudy\News\Block\News" name="news" template="news.phtml" />
+            <block class="Magentostudy\News\Block\News" name="news.list" template="news.phtml">
+                <block class="Magento\Theme\Block\Html\Pager" name="news_list_pager" as="news_list_pager"/>
+            </block>
         </referenceContainer>
     </body>
 </page>
