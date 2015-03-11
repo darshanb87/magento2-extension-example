@@ -1,6 +1,6 @@
 # magento2-extension-example
 Magento 2 News Management Module<br/>
-This module convers following features:<br/>
+This module have following features:<br/>
 <ul>
 <li>News Creation/Edition/Deletion from Admin side</li>
 <li>Admin Grid listing all News</li>
