@@ -1,7 +1,8 @@
 <?php
 /**
  *
- * @copyright Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
  */
 namespace Magentostudy\News\Controller\Adminhtml\Index;
 
@@ -16,12 +17,19 @@ class Edit extends \Magento\Backend\App\Action
      */
     protected $_coreRegistry = null;
 
+	/**
+     * @var \Magento\Framework\View\Result\PageFactory
+     */
+    protected $resultPageFactory;
+	
     /**
      * @param Action\Context $context
+	 * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      * @param \Magento\Framework\Registry $registry
      */
-    public function __construct(Action\Context $context, \Magento\Framework\Registry $registry)
+    public function __construct(Action\Context $context, \Magento\Framework\View\Result\PageFactory $resultPageFactory, \Magento\Framework\Registry $registry)
     {
+		$this->resultPageFactory = $resultPageFactory;
         $this->_coreRegistry = $registry;
         parent::__construct($context);
     }
@@ -42,23 +50,25 @@ class Edit extends \Magento\Backend\App\Action
     protected function _initAction()
     {
         // load layout, set active menu and breadcrumbs
-        $this->_view->loadLayout();
-        $this->_setActiveMenu(
+		/** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        $resultPage = $this->resultPageFactory->create();
+        $resultPage->setActiveMenu(
             'Magentostudy_News::news_manage'
-        )->_addBreadcrumb(
+        )->addBreadcrumb(
             __('News'),
             __('News')
-        )->_addBreadcrumb(
+        )->addBreadcrumb(
             __('Manage News'),
             __('Manage News')
         );
-        return $this;
+		return $resultPage;
     }
 
     /**
-     * Edit CMS page
+     * Edit News page
      *
-     * @return void
+     * @return \Magento\Backend\Model\View\Result\Page|\Magento\Backend\Model\View\Result\Redirect
+     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     public function execute()
     {
@@ -71,8 +81,10 @@ class Edit extends \Magento\Backend\App\Action
             $model->load($id);
             if (!$model->getId()) {
                 $this->messageManager->addError(__('This news no longer exists.'));
-                $this->_redirect('*/*/');
-                return;
+                /** \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+                $resultRedirect = $this->resultRedirectFactory->create();
+
+                return $resultRedirect->setPath('*/*/');
             }
         }
 
@@ -86,13 +98,16 @@ class Edit extends \Magento\Backend\App\Action
         $this->_coreRegistry->register('news', $model);
 
         // 5. Build edit form
-        $this->_initAction()->_addBreadcrumb(
+		/** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        $resultPage = $this->_initAction();
+        $resultPage->addBreadcrumb(
             $id ? __('Edit News') : __('New News'),
             $id ? __('Edit News') : __('New News')
         );
-        $this->_view->getPage()->getConfig()->getTitle()->prepend(__('News'));
-        $this->_view->getPage()->getConfig()->getTitle()
+        $resultPage->getConfig()->getTitle()->prepend(__('News'));
+        $resultPage->getConfig()->getTitle()
             ->prepend($model->getId() ? $model->getTitle() : __('New News'));
-        $this->_view->renderLayout();
+			
+        return $resultPage;
     }
 }

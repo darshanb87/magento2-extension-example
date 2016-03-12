@@ -1,16 +1,17 @@
 <?php
 /**
- * @copyright Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
  */
 namespace Magentostudy\News\Block\Adminhtml\News;
 
 /**
- * Adminhtml cms pages grid
+ * Adminhtml news pages grid
  */
 class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 {
     /**
-     * @var \Magento\Cms\Model\Resource\Page\Grid\CollectionFactory
+     * @var \Magentostudy\News\Model\ResourceModel\News\CollectionFactory
      */
     protected $_collectionFactory;
 
@@ -22,16 +23,15 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
     /**
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Backend\Helper\Data $backendHelper
-     * @param \Magento\Cms\Model\Page $cmsPage
-     * @param \Magento\Cms\Model\Resource\Page\Grid\CollectionFactory $collectionFactory
-     * @param \Magento\Core\Model\PageLayout\Config\Builder $pageLayoutBuilder
+     * @param \Magentostudy\News\Model\News $news
+     * @param \Magentostudy\News\Model\ResourceModel\News\CollectionFactory $collectionFactory
      * @param array $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Backend\Helper\Data $backendHelper,
         \Magentostudy\News\Model\News $news,
-        \Magentostudy\News\Model\Resource\News\Grid\CollectionFactory $collectionFactory,
+        \Magentostudy\News\Model\ResourceModel\News\CollectionFactory $collectionFactory,
         array $data = []
     ) {
         $this->_collectionFactory = $collectionFactory;
@@ -60,7 +60,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
     protected function _prepareCollection()
     {
         $collection = $this->_collectionFactory->create();
-        /* @var $collection \Magentostudy\News\Model\Resource\News\Grid\Collection */
+        /* @var $collection \Magentostudy\News\Model\ResourceModel\News\Collection */
         $this->setCollection($collection);
 
         return parent::_prepareCollection();

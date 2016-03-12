@@ -12,7 +12,7 @@
 ?>
 <?php $_newsItem = $this->getNews(); ?>
     <div class="news_item_subtitle">
-        <?php echo $this->formatDate($_newsItem->getPublishedAt(), 'medium') ?> |
+        <?php echo $this->formatDate($_newsItem->getPublishedAt()) ?> |
         <?php echo $this->escapeHtml($_newsItem->getAuthor()) ?>
     </div>
 

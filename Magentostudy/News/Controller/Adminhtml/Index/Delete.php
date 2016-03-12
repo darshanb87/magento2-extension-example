@@ -1,7 +1,8 @@
 <?php
 /**
  *
- * @copyright Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
  */
 namespace Magentostudy\News\Controller\Adminhtml\Index;
 
@@ -24,6 +25,8 @@ class Delete extends \Magento\Backend\App\Action
     {
         // check if we know what should be deleted
         $id = $this->getRequest()->getParam('news_id');
+		/** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        $resultRedirect = $this->resultRedirectFactory->create();
         if ($id) {
             $title = "";
             try {
@@ -35,19 +38,17 @@ class Delete extends \Magento\Backend\App\Action
                 // display success message
                 $this->messageManager->addSuccess(__('The news has been deleted.'));
                 // go to grid
-                $this->_redirect('*/*/');
-                return;
+                return $resultRedirect->setPath('*/*/');
             } catch (\Exception $e) {
                 // display error message
                 $this->messageManager->addError($e->getMessage());
                 // go back to edit form
-                $this->_redirect('*/*/edit', ['news_id' => $id]);
-                return;
+                return $resultRedirect->setPath('*/*/edit', ['page_id' => $id]);
             }
         }
         // display error message
         $this->messageManager->addError(__('We can\'t find a news to delete.'));
         // go to grid
-        $this->_redirect('*/*/');
+        return $resultRedirect->setPath('*/*/');
     }
 }

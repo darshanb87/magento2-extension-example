@@ -1,6 +1,7 @@
 <?php
 /**
- * @copyright Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
  */
 namespace Magentostudy\News\Block;
 
@@ -12,14 +13,14 @@ class News extends \Magento\Framework\View\Element\Template
     /**
      * News collection
      *
-     * @var Magentostudy\News\Model\Resource\News\Collection
+     * @var Magentostudy\News\Model\ResourceModel\News\Collection
      */
     protected $_newsCollection = null;
     
     /**
-     * Page factory
+     * News factory
      *
-     * @var \Magento\Cms\Model\PageFactory
+     * @var \Magentostudy\News\Model\NewsFactory
      */
     protected $_newsCollectionFactory;
     
@@ -29,11 +30,12 @@ class News extends \Magento\Framework\View\Element\Template
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magentostudy\News\Model\Resource\News\CollectionFactory $newsCollectionFactory
+	 * @param \Magentostudy\News\Helper\Data $dataHelper
      * @param array $data
      */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
-        \Magentostudy\News\Model\Resource\News\CollectionFactory $newsCollectionFactory,
+        \Magentostudy\News\Model\ResourceModel\News\CollectionFactory $newsCollectionFactory,
         \Magentostudy\News\Helper\Data $dataHelper,
         array $data = []
     ) {
@@ -48,7 +50,7 @@ class News extends \Magento\Framework\View\Element\Template
     /**
      * Retrieve news collection
      *
-     * @return Magentostudy_News_Model_Resource_News_Collection
+     * @return Magentostudy_News_Model_ResourceModel_News_Collection
      */
     protected function _getCollection()
     {

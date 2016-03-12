@@ -20,7 +20,6 @@ class PostDataProcessor
     /**
      * @param \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter
      * @param \Magento\Framework\Message\ManagerInterface $messageManager
-     * @param \Magento\Core\Model\Layout\Update\ValidatorFactory $validatorFactory
      */
     public function __construct(
         \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter,

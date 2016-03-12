@@ -1,16 +1,15 @@
 <?php
 /**
- * @copyright Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
  */
 namespace Magentostudy\News\Model;
-
-use Magento\Framework\Object\IdentityInterface;
 
 /**
  * News Model
  *
- * @method \Magento\Cms\Model\Resource\Page _getResource()
- * @method \Magento\Cms\Model\Resource\Page getResource()
+ * @method \Magentostudy\News\Model\ResourceModel\News _getResource()
+ * @method \Magentostudy\News\Model\ResourceModel\News getResource()
  */
 class News extends \Magento\Framework\Model\AbstractModel
 {
@@ -22,7 +21,7 @@ class News extends \Magento\Framework\Model\AbstractModel
     const XML_PATH_NEWS_EMAIL_IDENTITY = 'news/email/sender_email_identity';
     
     /**
-     * @var \Magento\Customer\Model\Resource\Customer\CollectionFactory
+     * @var \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory
      */
     protected $_customersFactory;
     
@@ -48,15 +47,15 @@ class News extends \Magento\Framework\Model\AbstractModel
      */
     protected function _construct()
     {
-        $this->_init('Magentostudy\News\Model\Resource\News');
+        $this->_init('Magentostudy\News\Model\ResourceModel\News');
     }
 
     /**
      * @param \Magento\Framework\Model\Context $context
      * @param \Magento\Framework\Registry $registry
-     * @param Customer\CollectionFactory $customersFactory
+     * @param \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory $customersFactory
      * @param \Magento\Framework\Model\Resource\AbstractResource $resource
-     * @param \Magento\Framework\Data\Collection\Db $resourceCollection
+     * @param \Magento\Framework\Data\Collection\AbstractDb $resourceCollection
      * @param array $data
      */
     public function __construct(
@@ -65,9 +64,9 @@ class News extends \Magento\Framework\Model\AbstractModel
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
-        \Magento\Customer\Model\Resource\Customer\CollectionFactory $customersFactory,
-        \Magento\Framework\Model\Resource\AbstractResource $resource = null,
-        \Magento\Framework\Data\Collection\Db $resourceCollection = null,
+        \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory $customersFactory,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = []
     ) {
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);

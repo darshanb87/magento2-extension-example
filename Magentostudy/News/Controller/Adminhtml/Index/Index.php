@@ -1,12 +1,33 @@
 <?php
 /**
  *
- * @copyright Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
  */
 namespace Magentostudy\News\Controller\Adminhtml\Index;
 
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\View\Result\PageFactory;
+
 class Index extends \Magento\Backend\App\Action
 {
+	/**
+     * @var PageFactory
+     */
+    protected $resultPageFactory;
+
+    /**
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     */
+    public function __construct(
+        Context $context,
+        PageFactory $resultPageFactory
+    ) {
+        parent::__construct($context);
+        $this->resultPageFactory = $resultPageFactory;
+    }
+	
     /**
      * Check the permission to run it
      *
@@ -24,17 +45,18 @@ class Index extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $this->_view->loadLayout();
-        $this->_setActiveMenu(
+		/** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        $resultPage = $this->resultPageFactory->create();
+        $resultPage->setActiveMenu(
             'Magentostudy_News::news_manage'
-        )->_addBreadcrumb(
+        )->addBreadcrumb(
             __('News'),
             __('News')
-        )->_addBreadcrumb(
+        )->addBreadcrumb(
             __('Manage News'),
             __('Manage News')
         );
-        $this->_view->getPage()->getConfig()->getTitle()->prepend(__('News'));
-        $this->_view->renderLayout();
+        $resultPage->getConfig()->getTitle()->prepend(__('News'));
+		return $resultPage;
     }
 }
