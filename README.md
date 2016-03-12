@@ -10,9 +10,9 @@ This module have following features:<br/>
 <li>Image upload with each news item from admin panel</li>
 <li>List all news on frontend with pagination</li>
 <li>News access link added in footer</li>
-<li>Send news to all customers using Cron</li>
+<li>Send news to all customers in email using Cron</li>
 </ul>
 <br/>
-1. Create a "code" folder inside your_magento_webroot/app folder.
-2. Put this Module inside "code" folder. app/code/Magentostudy/News
-3. execute command "php magento setup:upgrade"
+1. Create a "code" folder inside your_magento_webroot/app folder. <br/>
+2. Put this Module inside "code" folder. app/code/Magentostudy/News <br/>
+3. execute command "php magento setup:upgrade" <br/>
