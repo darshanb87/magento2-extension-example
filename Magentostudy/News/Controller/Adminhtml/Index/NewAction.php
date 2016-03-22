@@ -1,8 +1,4 @@
 <?php
-/**
- *
- * @copyright Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
- */
 namespace Magentostudy\News\Controller\Adminhtml\Index;
 
 class NewAction extends \Magento\Backend\App\Action
